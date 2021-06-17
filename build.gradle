@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+//camel case: allPath//naming convensions //classes and interfaces//abstract classes//data str
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task t1{
+    group "custom tasks"
+    description "print my name"
+    System.out.println("Bhajan Kr Barman")
+}
+
+task t2{
+    group "custom tasks"
+    description "print my school and college name: "
+    doFirst{
+        System.out.println("Jawahar Navodaya Vidyalaya")
+    }
+    doLast {
+        System.out.println("NITK Surathkal")
+    }
+}
+
+task t3(dependsOn:"t2"){
+    group "custom tasks"
+    description "dependencies in gradle"
+    System.out.println("Task t3 depends on task t2")
+}
+
+task copyFile(type: Copy){
+    from '/home/jacky/jacky/a.txt'
+    into '/home/jacky/Desktop/GN'
+}
+
